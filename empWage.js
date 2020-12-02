@@ -1,28 +1,28 @@
-//UC7 --> Array helper functions
-const IS_PART_TIME = 1;
-const IS_FULL_TIME = 2;
+//UC8 --> Storing daily wage in map
+const IS_PART_TIME = 2;
+const IS_FULL_TIME = 1;
 const PART_TIME_HOURS = 4;
 const FULL_TIME_HOURS = 8;
 const WAGE_PER_HOUR = 20;
 const NUM_OF_WORKING_DAYS = 20;
 const MAX_HRS_IN_MONTH = 160;
 
+let empDailyWageArr = new Array();
+let empDailyWageMap = new Map();
 let totalEmpHrs = 0;
 let totalWorkingDays = 0;
-let empDailyWageArr = new Array();
 let totalEmpWage = 0;
 
 function getWorkingHours(empCheck) {
   switch (empCheck) {
-    case IS_PART_TIME:
-      console.log("Employee is Present for Part Time");
-      return PART_TIME_HOURS;
     case IS_FULL_TIME:
-      console.log("Employee is Present for Full Time");
+      console.log("Employee is Present");
       return FULL_TIME_HOURS;
-
+    case IS_PART_TIME:
+      console.log("Employee is Present");
+      return PART_TIME_HOURS;
     default:
-      console.log("Employee is Absent");
+      console.log("Employee is Abscent");
       return 0;
   }
 }
@@ -32,7 +32,6 @@ empCheck = Math.floor(Math.random() * 10) % 3;
 function calcDailyWage(empHrs) {
   return empHrs * WAGE_PER_HOUR;
 }
-
 while (
   totalEmpHrs <= MAX_HRS_IN_MONTH &&
   totalWorkingDays < NUM_OF_WORKING_DAYS
@@ -42,7 +41,9 @@ while (
   let empHrs = getWorkingHours(empCheck);
   totalEmpHrs += empHrs;
   empDailyWageArr.push(calcDailyWage(empHrs));
+  empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
 }
+
 let empWage = calcDailyWage(totalEmpHrs);
 
 //UC7A
@@ -72,7 +73,6 @@ function mapDayWithWage(dailyWage) {
   dailyCntr++;
   return dailyCntr + " = " + dailyWage;
 }
-
 let mapDayWithWageArr = empDailyWageArr.map(mapDayWithWage);
 console.log("UC7B - Daily Wage Map");
 console.log(mapDayWithWageArr);
@@ -120,4 +120,14 @@ function totalDaysWorked(numOfDays, dailyWage) {
 console.log(
   "UC 7G - Number of Days Emp Worked :" +
     empDailyWageArr.reduce(totalDaysWorked, 0)
+);
+
+console.log(empDailyWageMap);
+
+function totalWages(totalWage, dailyWage) {
+  return totalWage + dailyWage;
+}
+console.log(
+  "UC8 - Emp Wage Map totalHrs : " +
+    Array.from(empDailyWageMap.values()).reduce(totalWages, 0)
 );
