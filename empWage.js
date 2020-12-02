@@ -1,3 +1,4 @@
+//UC11 --> EmpWage object operation using arrow function
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
 const PART_TIME_HOURS = 4;
@@ -22,7 +23,6 @@ function getWorkingHours(empCheck) {
     case IS_FULL_TIME:
       console.log("Employee is Present");
       return FULL_TIME_HOURS;
-
     default:
       console.log("Employee is Abscent");
       return 0;
@@ -182,3 +182,36 @@ console.log("Non Working Days: " + nonWorkingDays);
 console.log(
   "UC10 showing Daily Hours Worked And Wage Earned : " + empDailyHrsAndWageArr
 );
+
+//UC_11A - UC_11D
+let totalWage = empDailyHrsAndWageArr
+  .filter((dailyHrsAndWage) => dailyHrsAndWage.dailyWage > 0)
+  .reduce(
+    (totalWage, dailyHrsAndWage) => (totalWage += dailyHrsAndWage.dailyWage),
+    0
+  );
+
+let totalHour = empDailyHrsAndWageArr
+  .filter((dailyHrsAndWage) => dailyHrsAndWage.dailyWage > 0)
+  .reduce(
+    (totalHour, dailyHrsAndWage) => (totalHour += dailyHrsAndWage.dailyHours),
+    0
+  );
+console.log("UC_11A Total Hours: " + totalHour + "Total Wages:" + totalWage);
+
+process.stdout.write("UC_11B Logging Full Work Days");
+empDailyHrsAndWageArr
+  .filter((dailyHrsAndWage) => dailyHrsAndWage.dailyHours == 8)
+  .forEach((dailyHrsAndWage) =>
+    process.stdout.write(dailyHrsAndWage.toString())
+  );
+
+let partWorkingDayStrArr = empDailyHrsAndWageArr
+  .filter((dailyHrsAndWage) => dailyHrsAndWage.dailyHours == 4)
+  .map((dailyHrsAndWage) => dailyHrsAndWage.toString());
+console.log("\nUC_11C PartWorkingDayString" + partWorkingDayStrArr);
+
+let nonWorkingDayNums = empDailyHrsAndWageArr
+  .filter((dailyHrsAndWage) => dailyHrsAndWage.dailyHours == 0)
+  .map((dailyHrsAndWage) => dailyHrsAndWage.dayNum);
+console.log("UC_11D NonWorkingDayNums : " + nonWorkingDayNums);
