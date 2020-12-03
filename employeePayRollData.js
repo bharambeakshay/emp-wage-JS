@@ -26,16 +26,11 @@ class EmployeePayrollData {
         ? "undefined"
         : this.startDate.toLocaleDateString("en-US", options);
     return (
-      "id: " +
-      this.id +
-      " name: " +
-      this.name +
-      " salary : " +
-      this.salary +
-      " gender : " +
-      this.gender +
-      " startdate : " +
-      this.startDate
+      "id: " + this.id +
+      " name: " + this.name +
+      " salary : " + this.salary +
+      " gender : " + this.gender +
+      " startdate : " + this.startDate
     );
   }
 }
@@ -43,11 +38,5 @@ let employeePayrollData = new EmployeePayrollData(1, "Puma", 60000);
 console.log(employeePayrollData.tostring());
 employeePayrollData.name = "Nike";
 console.log(employeePayrollData.tostring());
-let newEmployeePayrollData = new EmployeePayrollData(
-  1,
-  "Puma",
-  60000,
-  "F",
-  new Date()
-);
+let newEmployeePayrollData = new EmployeePayrollData(1, "Puma", 60000, "F", new Date());
 console.log(newEmployeePayrollData.tostring());
