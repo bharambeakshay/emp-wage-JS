@@ -78,16 +78,11 @@ class EmployeePayrollData {
         ? "undefined"
         : this.date.toLocaleDateString("en-US", options);
     return (
-      "id = " +
-      this.id +
-      ", name = " +
-      this.name +
-      ", salary = " +
-      this.salary +
-      ", gender = " +
-      this.gender +
-      ", date = " +
-      empDate
+      "id = " + this.id +
+      ", name = " + this.name +
+      ", salary = " + this.salary +
+      ", gender = " + this.gender +
+      ", date = " + empDate
     );
   }
 }
@@ -99,11 +94,5 @@ try {
 } catch (error) {
   console.error(error);
 }
-let newEmployeePayrollData = new EmployeePayrollData(
-  0,
-  "Mark",
-  2000,
-  "M",
-  new Date()
-);
+let newEmployeePayrollData = new EmployeePayrollData(0, "Mark", 2000, "M", new Date());
 console.log(newEmployeePayrollData.toString());
